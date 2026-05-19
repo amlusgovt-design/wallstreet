@@ -20,7 +20,8 @@ export default function Features() {
                 Start Investing Today
               </h2>
               <p className="text-xl">
-                CryptoCrest has a variety of features that set us apart
+                Wallstreets Global Trading Academy has a variety of features
+                that set us apart
               </p>
             </div>
             <div className="md:grid md:grid-cols-2">

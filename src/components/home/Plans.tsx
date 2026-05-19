@@ -16,8 +16,8 @@ export default function Plans() {
           Get started in a few minutes
         </h2>
         <p className="text-xl max-w-[500px] mx-auto">
-           Cryptocrest Trade supports a variety of the most popular
-          digital currencies.
+          Wallstreets Global Trading Academy supports a variety of the most
+          popular digital currencies.
         </p>
       </div>
       <div className="relative max-w-[1240px] mx-auto grid gap-y-20 mb-10 lg:gap-y-0 lg:grid-cols-3 lg:mb-32">

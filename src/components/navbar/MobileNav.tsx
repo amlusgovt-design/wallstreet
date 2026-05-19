@@ -1,6 +1,6 @@
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Link } from "react-router-dom";
-import logo from "../../images/crest-logo.svg";
+import logo from "../../images/crest-logo.png";
 import { useEffect, useState } from "react";
 
 import { RiArrowRightSLine } from "react-icons/ri";
