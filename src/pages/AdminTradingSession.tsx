@@ -1,8 +1,6 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { AdminLayout } from "../components/layouts/AdminLayout";
 import Modal from "../components/Modals/Modal";
-import { history, usersInfo } from "../components/dashboards/data";
-import UploadButton from "../components/sharedUi/UploadButton";
 import { SearchBar } from "../components/sharedUi/Searchbar";
 import { Pagination } from "../components/sharedUi/Pagination";
 import { useAdminContext } from "../context/AdminContext";
@@ -10,25 +8,7 @@ import { TradeState } from "../types/types";
 
 type Props = {};
 
-interface UserTradeHistoriesProps {
-  fullname: string;
-  tradeType: string;
-  tradeOption: string;
-  pairs: string;
-  lotSize: string;
-  entry: string;
-  stopLoss: string;
-  takeProfit: string;
-  profit: string;
-  status: string;
-  result: string;
-  date: string;
-  userId: string;
-  id: string;
-}
-
 const AdminTradingSession = (props: Props) => {
-  const [loading, setLoading] = useState<{ [id: string]: boolean }>({});
   const [showModal, setShowModal] = useState(false);
   const [userId, setUserId] = useState("");
   const [tradeId, setTradeId] = useState("");
@@ -53,7 +33,7 @@ const AdminTradingSession = (props: Props) => {
           user?.fullname?.toLowerCase().includes(searchTerm.toLowerCase()) ||
           user?.amount?.toLowerCase().includes(searchTerm.toLowerCase()) ||
           user?.status?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          user?.userId?.toLowerCase().includes(searchTerm.toLowerCase())
+          user?.userId?.toLowerCase().includes(searchTerm.toLowerCase()),
       );
     }
 
@@ -66,7 +46,7 @@ const AdminTradingSession = (props: Props) => {
 
   const paginatedUsers = filteredUsers?.slice(
     startIndex,
-    startIndex + pageSize
+    startIndex + pageSize,
   );
 
   const handlePageChange = (page: number) => {
@@ -78,7 +58,7 @@ const AdminTradingSession = (props: Props) => {
   };
 
   const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value } = e.target;
     setUpdateTradeState((prev) => ({ ...prev, [name]: value }));
@@ -283,8 +263,8 @@ const AdminTradingSession = (props: Props) => {
                           trade.status === "win"
                             ? "text-success bg-success"
                             : trade.result === "loss"
-                            ? "text-danger bg-danger"
-                            : "text-warning bg-warning"
+                              ? "text-danger bg-danger"
+                              : "text-warning bg-warning"
                         }`}
                       >
                         {trade.status}

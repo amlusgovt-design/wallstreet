@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { AdminLayout } from "../components/layouts/AdminLayout";
 import Modal from "../components/Modals/Modal";
-import { history, usersInfo } from "../components/dashboards/data";
 import { MdDeleteForever } from "react-icons/md";
-import UploadButton from "../components/sharedUi/UploadButton";
 import { SearchBar } from "../components/sharedUi/Searchbar";
 import { Pagination } from "../components/sharedUi/Pagination";
 import { useAdminContext } from "../context/AdminContext";
 import { WithdrawalState } from "../types/types";
 
 const AdminWithdrawal = () => {
-  const [loading, setLoading] = useState<{ [id: string]: boolean }>({});
   const [userId, setUserId] = useState<string | null>(null);
   const [depositId, setDepositId] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
@@ -30,7 +27,7 @@ const AdminWithdrawal = () => {
           user?.fullname?.toLowerCase().includes(searchTerm.toLowerCase()) ||
           user?.amount?.toLowerCase().includes(searchTerm.toLowerCase()) ||
           user?.status?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          user?.userId?.toLowerCase().includes(searchTerm.toLowerCase())
+          user?.userId?.toLowerCase().includes(searchTerm.toLowerCase()),
       );
     }
 
@@ -43,7 +40,7 @@ const AdminWithdrawal = () => {
 
   const paginatedUsers = filteredUsers?.slice(
     startIndex,
-    startIndex + pageSize
+    startIndex + pageSize,
   );
 
   const handlePageChange = (page: number) => {
@@ -191,7 +188,7 @@ const AdminWithdrawal = () => {
                             onClick={() =>
                               handleUpdateWithdrawalStatus(
                                 withdrawal.uid,
-                                withdrawal.id
+                                withdrawal.id,
                               )
                             }
                             className="w-[110px] rounded-md  bg-meta-3 text-white py-2 px-3 flex items-center justify-center  gap-x-2"
@@ -202,7 +199,7 @@ const AdminWithdrawal = () => {
                             onClick={() =>
                               showDeleteWithdrawalModal(
                                 withdrawal.uid,
-                                withdrawal.id
+                                withdrawal.id,
                               )
                             }
                             className="w-[110px] rounded-md  bg-danger text-white py-2 px-3 flex items-center justify-center  gap-x-2"
@@ -213,7 +210,7 @@ const AdminWithdrawal = () => {
                         </td>
                       )}
                     </tr>
-                  )
+                  ),
                 )}
               </tbody>
             </table>

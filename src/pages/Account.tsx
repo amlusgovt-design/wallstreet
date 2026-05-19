@@ -16,9 +16,6 @@ const Account = (props: Props) => {
     bonus: "",
   });
   const [userId, setUserId] = useState("");
-  const [loading, setLoading] = useState<{ [currentUserId: string]: boolean }>(
-    {}
-  );
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [filteredAccount, setFilteredAccount] = useState<AccountState[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);

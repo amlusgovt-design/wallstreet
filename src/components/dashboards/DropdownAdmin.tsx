@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../../lib/firebase";
 import { useUserContext } from "../../context/UserContext";
 import capitalizeFirstLetter from "../../lib/capitalize";
-import { verifications } from "./data";
 
 const DropdownAdmin = () => {
 	const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -16,12 +15,13 @@ const DropdownAdmin = () => {
 	const dropdown = useRef<any>(null);
 
 	const { state, loading } = useUserContext();
+	const verificationStatus = state?.verification?.status;
 
 	useEffect(() => {
-		if (state && state.verification && state.verification.status) {
-			setStatus(state.verification.status);
-		}
-	}, [state.verification.status]);
+    if (verificationStatus) {
+      setStatus(verificationStatus);
+    }
+  }, [verificationStatus]);
 
 	// close on click outside
 	useEffect(() => {

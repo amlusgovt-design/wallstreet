@@ -1,11 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../images/LOGO-DARK.svg";
+import logo from "../images/crest-logo.png";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { auth, db } from "../lib/firebase";
-import { useUserContext } from "../context/UserContext";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import toast from "react-hot-toast";
-import { v4 as uuidv4 } from "uuid";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function AdminSignIn() {
@@ -28,23 +26,33 @@ export default function AdminSignIn() {
       const data = await signInWithEmailAndPassword(
         auth,
         formData.email,
-        formData.password
+        formData.password,
       );
 
-      const adminRef = doc(db, "admin", "QX6jHyNRZzKBDoIrVFD0");
+      const adminRef = doc(db, "admin", "DDVoFOwQkr7sEvAh33ao");
       const adminSnap = await getDoc(adminRef);
       const adminData = adminSnap.data();
 
       const userEmail = data.user.email;
-      if (userEmail === adminData?.email) {
-        localStorage.setItem("adminToken", data.user.refreshToken);
-        navigate("/admin/dashboard");
-        return true;
-      } else {
-        throw new Error("Invalid Email or Password");
+      if (!adminData) {
+        throw new Error(
+          "Admin record not found. Check the 'admins' collection and document ID in Firestore.",
+        );
       }
-    } catch (error) {
-      throw new Error("Invalid Email or Password");
+
+      const adminEmail = (adminData.email || "").toLowerCase();
+      if (!userEmail || userEmail.toLowerCase() !== adminEmail) {
+        throw new Error(
+          `Signed-in account (${userEmail || "unknown"}) is not the admin (expected: ${adminData.email}).`,
+        );
+      }
+
+      localStorage.setItem("adminToken", data.user.refreshToken);
+      navigate("/admin/dashboard");
+      return true;
+    } catch (error: any) {
+      console.error("Admin sign-in error:", error);
+      throw error;
     }
   };
 
@@ -53,7 +61,7 @@ export default function AdminSignIn() {
     toast.promise(confirmAdmin(), {
       loading: "Hold on, we're signing  you in!",
       success: "Sign in Successful",
-      error: (error) => error.message,
+      error: (error: any) => error?.message || String(error),
     });
   };
 

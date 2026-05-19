@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { AdminLayout } from "../components/layouts/AdminLayout";
 import Modal from "../components/Modals/Modal";
-import { history, usersInfo } from "../components/dashboards/data";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { SearchBar } from "../components/sharedUi/Searchbar";
@@ -13,13 +12,10 @@ import capitalizeFirstLetter from "../lib/capitalize";
 type Props = {};
 
 const AdminDeposit = (props: Props) => {
-  const [loading, setLoading] = useState<{ [id: string]: boolean }>({});
-
   const [viewImg, setViewImg] = useState("");
   const [showModal, setShowModal] = useState(false);
 
   const [userId, setUserId] = useState<string | null>(null);
-  const [depositId, setDepositId] = useState<string | null>(null);
 
   const [allowRemoveDeposit, setAllowRemoveDeposit] = useState(false);
   const [showRemoveDepositModal, setShowRemoveDepositModal] = useState(false);
@@ -38,7 +34,7 @@ const AdminDeposit = (props: Props) => {
         (user: any) =>
           user?.fullname?.toLowerCase().includes(searchTerm.toLowerCase()) ||
           user?.amount?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          user?.status?.toLowerCase().includes(searchTerm.toLowerCase())
+          user?.status?.toLowerCase().includes(searchTerm.toLowerCase()),
       );
     }
 
@@ -51,7 +47,7 @@ const AdminDeposit = (props: Props) => {
 
   const paginatedUsers = filteredUsers?.slice(
     startIndex,
-    startIndex + pageSize
+    startIndex + pageSize,
   );
 
   const handlePageChange = (page: number) => {
@@ -79,7 +75,6 @@ const AdminDeposit = (props: Props) => {
 
   const openRemoveDepositModal = (userId: string, depositId: string) => {
     setUserId(userId);
-    setDepositId(depositId);
     setShowRemoveDepositModal(true);
   };
 
@@ -238,7 +233,7 @@ const AdminDeposit = (props: Props) => {
                           onClick={() =>
                             handleUpdateDepositStatus(
                               deposit.id || "",
-                              deposit.uid || ""
+                              deposit.uid || "",
                             )
                           }
                           className="w-[110px] rounded-md  bg-meta-3 text-white py-2 px-3 flex items-center justify-center  gap-x-2"
@@ -250,7 +245,7 @@ const AdminDeposit = (props: Props) => {
                           onClick={() =>
                             openRemoveDepositModal(
                               deposit.id || "",
-                              deposit.uid || ""
+                              deposit.uid || "",
                             )
                           }
                           className="w-[110px] rounded-md  bg-danger text-white py-2 px-3 flex items-center justify-center  gap-x-2"

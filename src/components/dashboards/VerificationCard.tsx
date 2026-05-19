@@ -1,10 +1,9 @@
 import { MdVerified } from "react-icons/md";
-import { useUserContext } from "../../context/UserContext";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function VerificationCard() {
-  const [verified, setVerified] = useState(false);
-  const [verificationStatus, setVerificationStatus] = useState("not-verified");
+  const [verified] = useState(false);
+  const [verificationStatus] = useState("not-verified");
 
   // const { verification } = useUserContext().state;
   // // const verified = state.verification?.status === "verified" ? true : false;

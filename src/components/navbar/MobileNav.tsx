@@ -1,15 +1,12 @@
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Link } from "react-router-dom";
-import logo from "../../images/crest-logo.svg";
+import logo from "../../images/crest-logo.png";
 import { useEffect, useState } from "react";
-
-import { RiArrowRightSLine } from "react-icons/ri";
 
 export default function MobileNav() {
 	const [isMarketMenuOpen, setIsMarketMenuOpen] = useState(false);
 	const [isPlatformMenuOpen, setIsPlatformMenuOpen] = useState(false);
 	const [isAboutMenuOpen, setIsAboutMenuOpen] = useState(false);
-	const [isEducationMenuOpen, setIsEducationMenuOpen] = useState(false);
 
 	const [isNavOpen, setIsNavOpen] = useState(false);
 
