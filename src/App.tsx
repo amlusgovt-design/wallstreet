@@ -163,10 +163,6 @@ const router = createBrowserRouter([
         element: <AdminSubscription />,
       },
       {
-        path: "admin/trades",
-        element: <AdminTradingSession />,
-      },
-      {
         path: "admin/verification",
         element: <AdminVerifications />,
       },

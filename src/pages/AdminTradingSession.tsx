@@ -144,7 +144,7 @@ const AdminTradingSession = (props: Props) => {
           </div>
         </form>
       </Modal>
-      {trades?.length > 0 && (
+      {trades?.length > 0 ? (
         <div className="rounded-sm border px-5 pt-6 pb-2.5 shadow-default border-strokedark bg-boxdark sm:px-7.5 xl:pb-1">
           <h2 className="font-bold text-xl mb-5 p-4 text-white rounded-md ">
             ALL TRADES SESSIONS
@@ -289,6 +289,13 @@ const AdminTradingSession = (props: Props) => {
             currentPage={currentPage}
             onPageChange={handlePageChange}
           />
+        </div>
+      ) : (
+        <div className="rounded-sm border px-5 py-8 shadow-default border-strokedark bg-boxdark sm:px-7.5 text-center text-white">
+          <h2 className="font-bold text-xl mb-3">No trade sessions found</h2>
+          <p className="text-sm text-white/70">
+            There are currently no trade sessions in the system.
+          </p>
         </div>
       )}
     </AdminLayout>

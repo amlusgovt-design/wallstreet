@@ -101,7 +101,7 @@ const AdminWithdrawal = () => {
           </div>
         </div>
       </Modal>
-      {withdrawals?.length > 0 && (
+      {withdrawals?.length > 0 ? (
         <div className="rounded-sm border px-5 pt-6 pb-2.5 shadow-default border-strokedark bg-boxdark sm:px-7.5 xl:pb-1">
           <h2 className="font-bold text-xl mb-5 p-4 text-white rounded-md ">
             ALL USERS WITHDRAWALS
@@ -220,6 +220,15 @@ const AdminWithdrawal = () => {
             currentPage={currentPage}
             onPageChange={handlePageChange}
           />
+        </div>
+      ) : (
+        <div className="rounded-sm border px-5 py-8 shadow-default border-strokedark bg-boxdark sm:px-7.5 text-center text-white">
+          <h2 className="font-bold text-xl mb-3">
+            No withdrawal records found
+          </h2>
+          <p className="text-sm text-white/70">
+            There are currently no withdrawal requests in the system.
+          </p>
         </div>
       )}
     </AdminLayout>
